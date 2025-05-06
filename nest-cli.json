@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/microservices-demo/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/microservices-demo/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/microservices-demo",
+  "projects": {
+    "microservices-demo": {
+      "type": "application",
+      "root": "apps/microservices-demo",
+      "entryFile": "main",
+      "sourceRoot": "apps/microservices-demo/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/microservices-demo/tsconfig.app.json"
+      }
+    },
+    "user-service": {
+      "type": "application",
+      "root": "apps/user-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/user-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/user-service/tsconfig.app.json"
+      }
+    },
+    "product-service": {
+      "type": "application",
+      "root": "apps/product-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/product-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/product-service/tsconfig.app.json"
+      }
+    }
+  }
+}
