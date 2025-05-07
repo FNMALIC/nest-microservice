@@ -8,6 +8,7 @@ import {AuthMiddleware} from "../../../helpers/auth.middleware";
 import {HandlebarsAdapter} from "../../../helpers/handlebars.adapter";
 import {clientProxy} from "../../../helpers/func";
 import {UsersController} from "./controllers/users.controller";
+import {LessonsController} from "./controllers/lessons.controller";
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import {UsersController} from "./controllers/users.controller";
       }
     ))),
   ],
-  controllers: [AppController, YearsController, UsersController],
+  controllers: [AppController, YearsController, UsersController, LessonsController],
   providers: [AppService],
 })
 export class AppModule {

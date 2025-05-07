@@ -16,7 +16,6 @@ export class YearsController {
     });
   }
 
-  @ApiOperation({summary: 'Change year status between active and inactive'})
   @Post('/activation')
   async activate(@Res() res: any, @Body() data: any) {
     await ErrorInterceptor(async () => {

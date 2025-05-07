@@ -1,6 +1,7 @@
 import {Body, Controller, Inject, Post, Res} from '@nestjs/common';
 import {ClientProxy} from "@nestjs/microservices";
-import {ErrorInterceptor, Ok_Empty_Res, receiver} from "../../../../helpers/func";
+import {ErrorInterceptor, receiver} from "../../../../helpers/func";
+import {ApiBody} from "@nestjs/swagger";
 
 @Controller('lessons')
 export class LessonsController {
@@ -8,9 +9,21 @@ export class LessonsController {
   }
 
   @Post('/time-table')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        EMPLOYEE_ID: {type: 'string', description: 'User ID'},
+        END_DATE: {type: 'string', description: 'End Date'},
+        START_DATE: {type: 'string', description: 'Start Date'},
+      },
+      required: ['EMPLOYEE_ID', 'START_DATE', 'END_DATE'],
+    },
+  })
   async planning(@Res() res: any, @Body() body: any) {
     await ErrorInterceptor(async () => {
-      return Ok_Empty_Res(await receiver(this.lessonsC, 'planning', body), res);
+      let result = await receiver(this.lessonsC, 'planning', body)
+      return res.status(result.status).json(result.data);
     });
   }
 }
