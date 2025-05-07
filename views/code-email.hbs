@@ -1,0 +1,47 @@
+<div>
+  <div style="max-width: 768px; margin:auto; text-align: justify">
+    <h2 style="text-align: center">DEMANDE DE VERIFICATION</h2>
+    <h3>Ce message est envoyé automatiquement par la plateforme GALIO et fait partie de la procédure de connexion
+      sécurisée au portail.</h3>
+    Nous avons détecté une demande de connexion à votre compte
+    <ul>
+      <li>Propriétaire du compte: {{LASTNAME}} {{FIRSTNAME}}</li>
+      <li>Matricule: {{EMPLOYEE_ID}}</li>
+      <li>Email: {{EMAIL}}</li>
+    <li>Date: {{currentDate}}</li>
+    </ul>
+    Afin de vérifier que c’est bien vous qui êtes à l’origine de la tentative de connexion, veuillez taper le code
+    suivant dans GALIO pour autoriser votre connexion — expiration dans 15 minutes:
+    <div
+      style="text-align: center; background: lightgrey; padding: 4px;margin: 12px 0; border-radius: 4px; font-size: 24px; font-weight: bold; letter-spacing: 2px">
+      {{code}}
+    </div>
+    Si vous n’êtes pas à l’origine de cette tentative de connexion, veuillez ne rien renseigner et signaler cet incident
+    par mail à l’adresse : <a href="mailto:numerique.educatif@myiuc.com "> numerique.educatif@myiuc.com</a><br>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <div style="max-width: 768px; margin:auto; text-align: justify">
+    <h2 style="text-align: center">VERIFICATION NEEDED</h2>
+    <h3>This message is sent automaticaly by the GALIO platform, and is part of the secured connection procedure.</h3>
+    We have detected a sign-in request to your account.
+    <ul>
+      <li>Owner of the account: {{LASTNAME}} {{FIRSTNAME}}</li>
+      <li>Matricule: {{EMPLOYEE_ID}}</li>
+      <li>Email: {{EMAIL}}</li>
+      <li>Attempted at: {{currentDate}}</li>
+    </ul>
+    In order to verify that you are the requester, please type the following code in GALIO to authorize your connection.
+    — it will expire in 15 minutes:
+    <div
+      style="text-align: center; background: lightgrey; padding: 4px;margin: 12px 0; border-radius: 4px; font-size: 24px; font-weight: bold; letter-spacing: 2px">
+      {{code}}
+    </div>
+
+    If you are not the person who tried to connect, please dont type anything and report this incident by mail to this
+    adress :
+    <a href="mailto:numerique.educatif@myiuc.com">numerique.educatif@myiuc.com</a><br>
+  </div>
+
+</div>

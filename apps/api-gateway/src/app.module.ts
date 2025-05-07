@@ -1,41 +1,32 @@
 // app.module.ts (Gateway)
-import {Module} from '@nestjs/common';
+import {MiddlewareConsumer, Module, RequestMethod} from '@nestjs/common';
 import {ClientsModule, Transport} from '@nestjs/microservices';
 import {AppController} from './app.controller';
 import {AppService} from './app.service';
-import {YearsController} from "./years.controller";
+import {YearsController} from "./controllers/years.controller";
+import {AuthMiddleware} from "../../../helpers/auth.middleware";
+import {HandlebarsAdapter} from "../../../helpers/handlebars.adapter";
+import {clientProxy} from "../../../helpers/func";
 
 @Module({
   imports: [
-    ClientsModule.register([
+    ClientsModule.register(Object.keys(clientProxy()).map(c => (
       {
-        name: 'USER_SERVICE',
+        name: c,
         transport: Transport.TCP,
         options: {
           host: 'localhost',
-          port: 3001,
+          port: clientProxy()[c],
         },
-      },
-      {
-        name: 'PRODUCT_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          host: 'localhost',
-          port: 3002,
-        },
-      },
-      {
-        name: 'YEARS_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          host: 'localhost',
-          port: 3003,
-        },
-      },
-    ]),
+      }
+    ))),
   ],
   controllers: [AppController, YearsController],
   providers: [AppService],
 })
 export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AuthMiddleware).exclude({path: 'auth', method: RequestMethod.ALL});
+    consumer.apply(HandlebarsAdapter).forRoutes('*');
+  }
 }
