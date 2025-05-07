@@ -36,6 +36,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/product-service/tsconfig.app.json"
       }
+    },
+    "academic-years": {
+      "type": "application",
+      "root": "apps/academic-years",
+      "entryFile": "main",
+      "sourceRoot": "apps/academic-years/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/academic-years/tsconfig.app.json"
+      }
     }
   }
 }
