@@ -10,10 +10,6 @@ export class ProductService {
     @Inject('USER_SERVICE') private readonly userClient: ClientProxy,
   ) {}
 
-  // getProduct(id: number) {
-  //   return this.products.find(product => product.id === id) || { message: 'Product not found' };
-  // }
-
   createProduct(productData: any) {
     const newProduct = {
       id: this.products.length + 1,
@@ -28,7 +24,6 @@ export class ProductService {
     const product = this.products.find(product => product.id === id);
     
     if (product && product.userId) {
-      // Get user information related to this product
       const user = await firstValueFrom(
         this.userClient.send({ cmd: 'get_user' }, product.userId)
       );
