@@ -5,7 +5,6 @@ import {clientProxy} from "../../../helpers/func";
 import * as fs from "fs";
 
 async function bootstrap() {
-  console.log(clientProxy(), )
   const app = await NestFactory.createMicroservice(AcademicYearsModule, {
     transport: Transport.TCP,
     options: {
