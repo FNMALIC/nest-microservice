@@ -10,31 +10,112 @@
   "monorepo": true,
   "root": "apps/microservices-demo",
   "projects": {
-    "microservices-demo": {
+    "api-gateway": {
       "type": "application",
-      "root": "apps/microservices-demo",
+      "root": "apps/api-gateway",
       "entryFile": "main",
-      "sourceRoot": "apps/microservices-demo/src",
+      "sourceRoot": "apps/api-gateway/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/microservices-demo/tsconfig.app.json"
+        "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
       }
     },
-    "user-service": {
+    "academic-years": {
       "type": "application",
-      "root": "apps/user-service",
+      "root": "apps/academic-years",
       "entryFile": "main",
-      "sourceRoot": "apps/user-service/src",
+      "sourceRoot": "apps/academic-years/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/user-service/tsconfig.app.json"
+        "tsConfigPath": "apps/academic-years/tsconfig.app.json"
       }
     },
-    "product-service": {
+    "lessons": {
       "type": "application",
-      "root": "apps/product-service",
+      "root": "apps/lessons",
       "entryFile": "main",
-      "sourceRoot": "apps/product-service/src",
+      "sourceRoot": "apps/lessons/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/product-service/tsconfig.app.json"
+        "tsConfigPath": "apps/lessons/tsconfig.app.json"
+      }
+    },
+    "request/request-batch": {
+      "type": "application",
+      "root": "apps/request/request-batch",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/request-batch/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/request-batch/tsconfig.app.json"
+      }
+    },
+    "request/request-categories": {
+      "type": "application",
+      "root": "apps/request/request-categories",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/request-categories/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/request-categories/tsconfig.app.json"
+      }
+    },
+    "request/request-display-configs": {
+      "type": "application",
+      "root": "apps/request/request-display-configs",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/request-display-configs/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/request-display-configs/tsconfig.app.json"
+      }
+    },
+    "request/request-groups": {
+      "type": "application",
+      "root": "apps/request/request-groups",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/request-groups/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/request-groups/tsconfig.app.json"
+      }
+    },
+    "request/request-status": {
+      "type": "application",
+      "root": "apps/request/request-status",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/request-status/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/request-status/tsconfig.app.json"
+      }
+    },
+    "request/request-step-batchs": {
+      "type": "application",
+      "root": "apps/request/request-step-batchs",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/request-step-batchs/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/request-step-batchs/tsconfig.app.json"
+      }
+    },
+    "request/request-step-configs": {
+      "type": "application",
+      "root": "apps/request/request-step-configs",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/request-step-configs/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/request-step-configs/tsconfig.app.json"
+      }
+    },
+    "request/request-steps": {
+      "type": "application",
+      "root": "apps/request/request-steps",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/request-steps/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/request-steps/tsconfig.app.json"
+      }
+    },
+    "request/requests": {
+      "type": "application",
+      "root": "apps/request/requests",
+      "entryFile": "main",
+      "sourceRoot": "apps/request/requests/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request/requests/tsconfig.app.json"
       }
     }
   }
