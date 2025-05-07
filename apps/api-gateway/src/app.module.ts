@@ -19,6 +19,8 @@ import {LessonsController} from "./controllers/lessons.controller";
         options: {
           host: 'localhost',
           port: clientProxy()[c],
+          retryAttempts: 5,
+          retryDelay: 3000,
         },
       }
     ))),
