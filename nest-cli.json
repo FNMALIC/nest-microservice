@@ -10,31 +10,13 @@
   "monorepo": true,
   "root": "apps/microservices-demo",
   "projects": {
-    "microservices-demo": {
+    "api-gateway": {
       "type": "application",
-      "root": "apps/microservices-demo",
+      "root": "apps/api-gateway",
       "entryFile": "main",
-      "sourceRoot": "apps/microservices-demo/src",
+      "sourceRoot": "apps/api-gateway/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/microservices-demo/tsconfig.app.json"
-      }
-    },
-    "user-service": {
-      "type": "application",
-      "root": "apps/user-service",
-      "entryFile": "main",
-      "sourceRoot": "apps/user-service/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/user-service/tsconfig.app.json"
-      }
-    },
-    "product-service": {
-      "type": "application",
-      "root": "apps/product-service",
-      "entryFile": "main",
-      "sourceRoot": "apps/product-service/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/product-service/tsconfig.app.json"
+        "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
       }
     },
     "academic-years": {
@@ -44,6 +26,15 @@
       "sourceRoot": "apps/academic-years/src",
       "compilerOptions": {
         "tsConfigPath": "apps/academic-years/tsconfig.app.json"
+      }
+    },
+    "lessons": {
+      "type": "application",
+      "root": "apps/lessons",
+      "entryFile": "main",
+      "sourceRoot": "apps/lessons/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/lessons/tsconfig.app.json"
       }
     }
   }
