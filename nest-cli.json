@@ -1,14 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/microservices-demo/src",
+  "sourceRoot": "apps/api-gateway/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/microservices-demo/tsconfig.app.json"
+    "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/microservices-demo",
+  "root": "apps/api-gateway",
   "projects": {
     "api-gateway": {
       "type": "application",
@@ -35,87 +35,6 @@
       "sourceRoot": "apps/lessons/src",
       "compilerOptions": {
         "tsConfigPath": "apps/lessons/tsconfig.app.json"
-      }
-    },
-    "request/request-batch": {
-      "type": "application",
-      "root": "apps/request/request-batch",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/request-batch/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/request-batch/tsconfig.app.json"
-      }
-    },
-    "request/request-categories": {
-      "type": "application",
-      "root": "apps/request/request-categories",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/request-categories/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/request-categories/tsconfig.app.json"
-      }
-    },
-    "request/request-display-configs": {
-      "type": "application",
-      "root": "apps/request/request-display-configs",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/request-display-configs/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/request-display-configs/tsconfig.app.json"
-      }
-    },
-    "request/request-groups": {
-      "type": "application",
-      "root": "apps/request/request-groups",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/request-groups/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/request-groups/tsconfig.app.json"
-      }
-    },
-    "request/request-status": {
-      "type": "application",
-      "root": "apps/request/request-status",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/request-status/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/request-status/tsconfig.app.json"
-      }
-    },
-    "request/request-step-batchs": {
-      "type": "application",
-      "root": "apps/request/request-step-batchs",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/request-step-batchs/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/request-step-batchs/tsconfig.app.json"
-      }
-    },
-    "request/request-step-configs": {
-      "type": "application",
-      "root": "apps/request/request-step-configs",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/request-step-configs/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/request-step-configs/tsconfig.app.json"
-      }
-    },
-    "request/request-steps": {
-      "type": "application",
-      "root": "apps/request/request-steps",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/request-steps/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/request-steps/tsconfig.app.json"
-      }
-    },
-    "request/requests": {
-      "type": "application",
-      "root": "apps/request/requests",
-      "entryFile": "main",
-      "sourceRoot": "apps/request/requests/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/request/requests/tsconfig.app.json"
       }
     }
   }

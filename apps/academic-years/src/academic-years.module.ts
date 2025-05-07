@@ -2,7 +2,7 @@ import {Module} from '@nestjs/common';
 import {AcademicYearsController} from './academic-years.controller';
 import {AcademicYearsService} from './academic-years.service';
 import {SequelizeModule} from "@nestjs/sequelize";
-import {AcademicYears} from "./academic-years";
+import {AcademicYears} from "../../../models/academic-years";
 import {DatabaseModule} from "../../../database/database.module";
 
 @Module({

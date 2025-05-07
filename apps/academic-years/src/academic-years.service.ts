@@ -1,5 +1,5 @@
 import {Injectable} from '@nestjs/common';
-import {AcademicYears} from './academic-years';
+import {AcademicYears} from '../../../models/academic-years';
 import {InjectModel} from '@nestjs/sequelize';
 import {serializer} from '../../../helpers/func';
 import {MessagePattern} from "@nestjs/microservices";
