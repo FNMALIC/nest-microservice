@@ -9,7 +9,7 @@ const services = folders.filter(dirent => dirent.isDirectory()).map(dir => dir.n
 
 
 for (const service of services) {
-  console.log(`🔄 Starting ${service}...`);
+  console.log(`🔄 Starting ${service}.`);
   const child = cp.spawn('pnpm', ['nest', 'start', service, '--watch'], {
     stdio: 'inherit',
     shell: true

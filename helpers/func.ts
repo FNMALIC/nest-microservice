@@ -60,7 +60,7 @@ export const clientProxy = () => {
   fs.readdirSync('./apps', {withFileTypes: true})
     .filter(dirent => dirent.isDirectory() && dirent.name != 'api-gateway')
     .forEach((dir, i) => (
-      data[dir.name] = 3001 + i
+      data[dir.name] = 6000 + i
     ))
   return data;
 }

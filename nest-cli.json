@@ -45,6 +45,24 @@
       "compilerOptions": {
         "tsConfigPath": "apps/users/tsconfig.app.json"
       }
+    },
+    "classes": {
+      "type": "application",
+      "root": "apps/classes",
+      "entryFile": "main",
+      "sourceRoot": "apps/classes/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/classes/tsconfig.app.json"
+      }
+    },
+    "schedules": {
+      "type": "application",
+      "root": "apps/schedules",
+      "entryFile": "main",
+      "sourceRoot": "apps/schedules/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/schedules/tsconfig.app.json"
+      }
     }
   }
 }
