@@ -1,8 +1,16 @@
 import { NestFactory } from '@nestjs/core';
-import { Request/requestStepsModule } from './request/request-steps.module';
+import { RequestStepsModule } from './request-steps.module';
+import {Transport} from "@nestjs/microservices";
+import {clientProxy} from "../../../../helpers/func";
 
 async function bootstrap() {
-  const app = await NestFactory.create(Request/requestStepsModule);
-  await app.listen(process.env.port ?? 3000);
+    const app = await NestFactory.createMicroservice(RequestStepsModule,{
+       transport: Transport.TCP,
+            options: {
+              host: 'localhost',
+              port: clientProxy()[__dirname.split("\\").pop()],
+            },
+    });
+    await app.listen();
 }
 bootstrap();

@@ -9,6 +9,8 @@ import {HandlebarsAdapter} from "../../../helpers/handlebars.adapter";
 import {clientProxy} from "../../../helpers/func";
 import {UsersController} from "./controllers/users.controller";
 import {LessonsController} from "./controllers/lessons.controller";
+import {RequestsController} from "./controllers/requests.controller"
+import { RequestStepsController } from './controllers/request-steps.controller';
 
 @Module({
   imports: [
@@ -25,7 +27,7 @@ import {LessonsController} from "./controllers/lessons.controller";
       }
     ))),
   ],
-  controllers: [AppController, YearsController, UsersController, LessonsController],
+  controllers: [AppController, RequestsController,RequestStepsController,YearsController, UsersController, LessonsController],
   providers: [AppService],
 })
 export class AppModule {

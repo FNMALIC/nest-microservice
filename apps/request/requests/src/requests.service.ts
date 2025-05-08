@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { Requests } from './requests';
+import { Requests } from '../../../../models/requests';
 import { InjectModel } from '@nestjs/sequelize';
-import { RequestCategories } from 'main-app/modules/request-categories/request-catetgories';
-import { Employees } from 'main-app/modules/employees/employees';
-import { RequestStepBatches } from '../request-step-batchs/request-step-batchs';
-import { RequestBatches } from 'main-app/modules/request-batchs/request-batchs';
+import { RequestCategories } from '../../../../models/request-catetgories';
+import { Employees } from '../../../../models/employees';
+import { RequestStepBatches } from '../../../../models/request-step-batchs';
+import { RequestBatches } from '../../../../models/request-batchs';
 import * as _ from 'lodash';
 import { Op } from 'sequelize';
-import { RequestSteps } from 'main-app/modules/request-steps/request-steps';
+import { RequestSteps } from '../../../../models/request-steps';
 import fs from 'fs';
 import { encode } from 'url-encode-decode';
-import { AcademicYears } from '../academic-years/academic-years';
-import { callbackFolder, serializer } from '../../helpers/func';
+import { AcademicYears } from '../../../../models/academic-years';
+import { callbackFolder, serializer } from '../../../../helpers/func';
 
 @Injectable()
 export class RequestsService {

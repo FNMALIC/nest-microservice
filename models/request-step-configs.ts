@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { RequestCategories } from '../request-categories/request-catetgories';
-import { RequestGroups } from '../request-groups/request-groups';
+import { RequestCategories } from './request-catetgories';
+import { RequestGroups } from './request-groups';
 
 @Table({ tableName: 'REQUEST_STEP_CONFIGS' })
 export class RequestStepConfigs extends Model {

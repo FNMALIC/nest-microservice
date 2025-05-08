@@ -6,7 +6,7 @@ import {
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { RequestBatches } from '../request-batchs/request-batchs';
+import { RequestBatches } from './request-batchs';
 
 @Table({ tableName: 'REQUEST_STEP_BATCHES' })
 export class RequestStepBatches extends Model {

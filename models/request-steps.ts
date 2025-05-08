@@ -7,9 +7,9 @@ import {
   ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import { Requests } from 'main-app/modules/requests/requests';
-import { RequestStepConfigs } from '../request-step-configs/request-step-configs';
-import { LabelDecisions } from '../label-decisions/label-decisions';
+import { LabelDecisions } from './label-decisions';
+import { RequestStepConfigs } from './request-step-configs';
+import { Requests } from './requests';
 
 @Table({ tableName: 'REQUEST_STEPS' })
 export class RequestSteps extends Model {

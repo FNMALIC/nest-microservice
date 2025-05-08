@@ -1,8 +1,8 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { RequestCategories } from '../request-categories/request-catetgories';
-import { RequestStepBatches } from '../request-step-batchs/request-step-batchs';
-import { Employees } from '../employees/employees';
-import { RequestSteps } from '../request-steps/request-steps';
+import { Employees } from './employees';
+import { RequestCategories } from './request-catetgories';
+import { RequestStepBatches } from './request-step-batchs';
+import { RequestSteps } from './request-steps';
 
 @Table({ tableName: 'REQUESTS' })
 export class Requests extends Model {

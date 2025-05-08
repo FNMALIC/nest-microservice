@@ -10,14 +10,12 @@ import {
   Res,
 } from '@nestjs/common';
 import { RequestsService } from './requests.service';
-// import { ApiExcludeController } from '@nestjs/swagger';
+import {MessagePattern} from "@nestjs/microservices";
 
-// @ApiExcludeController()
 @Controller('requests')
 export class RequestsController {
   constructor(private requestService: RequestsService) {}
 
-  @Get('/:request_id')
   async findOne(@Res() res: any, @Param('request_id') request_id: string) {
     try {
       const result = this.requestService.getOne({ request_id });
@@ -34,7 +32,6 @@ export class RequestsController {
     }
   }
 
-  @Patch('/user/:user')
   async getRequestConcerned(@Res() res: any, @Param('user') user: string) {
     try {
       const result = await this.requestService.getRequestConcerned({ user });
@@ -51,7 +48,6 @@ export class RequestsController {
     }
   }
 
-  @Get('/batch/:batch')
   async getRequestsForBatch(@Res() res: any, @Param('batch') batch: string) {
     try {
       const result = await this.requestService.getRequestsForBatch(batch);
@@ -68,7 +64,6 @@ export class RequestsController {
     }
   }
 
-  @Get('/author/:matricule')
   async getRequestConcernedAuthor(
     @Res() res: any,
     @Param('matricule') matricule: string,
@@ -90,7 +85,6 @@ export class RequestsController {
     }
   }
 
-  @Get('stats/user/:matricule')
   async getStatRequestForUser(
     @Res() res: any,
     @Param('matricule') matricule: string,
@@ -112,7 +106,6 @@ export class RequestsController {
     }
   }
 
-  @Post('/all')
   async getRequest(@Res() res: any, @Body() data: any) {
     try {
       const result = await this.requestService.getOne(data);
@@ -129,7 +122,6 @@ export class RequestsController {
     }
   }
 
-  @Post('/')
   async createRequest(@Res() res: any, @Body() data: any) {
     try {
       const result = await this.requestService.createRequest(data);
@@ -149,7 +141,6 @@ export class RequestsController {
     }
   }
 
-  @Post('/print')
   async setPrinted(@Res() res: any, @Body() data: any) {
     try {
       const result = await this.requestService.setPrinted(data);
@@ -166,7 +157,6 @@ export class RequestsController {
     }
   }
 
-  @Post('/report')
   async getReport(@Res() res: any, @Body() data: any) {
     try {
       const result = this.requestService.getReport(data);
@@ -183,7 +173,6 @@ export class RequestsController {
     }
   }
 
-  @Post('/reject')
   async rejectRequest(@Res() res: any, @Body() data: any) {
     try {
       const result = this.requestService.rejectRequest(data);
