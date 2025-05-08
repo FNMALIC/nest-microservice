@@ -1,5 +1,5 @@
 import { Column, DataType, Default, HasMany, Model, PrimaryKey, Table } from 'sequelize-typescript';
-import { EmployeeSubjects } from './employee-subjects';
+import {EmployeeSubjects} from "./employee-subjects";
 
 @Table({ tableName: 'EMPLOYEES' })
 export class Employees extends Model {
@@ -123,7 +123,7 @@ export class Employees extends Model {
 
   @Column({ type: DataType.DATEONLY })
   IDENTIFSTART: string;
-  RequestsService
+
   @Column({ type: DataType.DATEONLY })
   IDENTIFEND: string;
 
@@ -231,4 +231,3 @@ export class Employees extends Model {
     sourceKey: 'EMPLOYEE_ID',
   }) employeeSubjects: EmployeeSubjects[];
 }
-RequestsService

@@ -1,7 +1,7 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 @Table({ tableName: 'LESSONS' })
-export class Lesson extends Model {
+export class Lessons extends Model {
   @Column({ type: DataType.STRING }) Bill_Last_Change_Date: string;
   @Column({ type: DataType.STRING }) Building_ID: string;
   @Column({ type: DataType.STRING }) Building_Last_Change_Date: string;

@@ -9,11 +9,14 @@ import {HandlebarsAdapter} from "../../../helpers/handlebars.adapter";
 import {clientProxy} from "../../../helpers/func";
 import {UsersController} from "./controllers/users.controller";
 import {LessonsController} from "./controllers/lessons.controller";
-import {RequestsController} from "./controllers/requests.controller"
-import { RequestStepsController } from './controllers/request-steps.controller';
+import {SchedulesController} from "./controllers/schedules.controller";
+import {ScheduleModule} from "@nestjs/schedule";
+import {ConfigModule} from "@nestjs/config";
 
 @Module({
   imports: [
+    ConfigModule.forRoot({isGlobal: true}),
+    ScheduleModule.forRoot(),
     ClientsModule.register(Object.keys(clientProxy()).map(c => (
       {
         name: c,
@@ -27,7 +30,7 @@ import { RequestStepsController } from './controllers/request-steps.controller';
       }
     ))),
   ],
-  controllers: [AppController, RequestsController,RequestStepsController,YearsController, UsersController, LessonsController],
+  controllers: [AppController, YearsController, UsersController, LessonsController, SchedulesController],
   providers: [AppService],
 })
 export class AppModule {

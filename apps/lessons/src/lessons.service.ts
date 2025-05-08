@@ -1,12 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Lesson } from '../../../models/lessons';
+import { Lessons } from '../../../models/lessons';
 import { Op } from 'sequelize';
 
 @Injectable()
 export class LessonsService {
   constructor(
-    @InjectModel(Lesson) private lessonsModel: typeof Lesson,
+    @InjectModel(Lessons) private lessonsModel: typeof Lessons,
   ) {
   }
 

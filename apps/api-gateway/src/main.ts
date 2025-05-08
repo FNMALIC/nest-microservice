@@ -1,4 +1,5 @@
 import {NestFactory} from '@nestjs/core';
+import * as process from 'process';
 import {AppModule} from './app.module';
 import * as bodyParser from 'body-parser';
 import {LoggerService} from "../../../helpers/logger.service";
@@ -32,7 +33,7 @@ async function bootstrap() {
       operationIdFactory: (controllerKey: string, methodKey: string) =>
         methodKey,
     }));
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT);
 }
 
 bootstrap();
