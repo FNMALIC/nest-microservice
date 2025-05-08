@@ -2,6 +2,8 @@ import {Body, Controller, Get, HttpException, HttpStatus, Patch, Inject, Param, 
 import {ClientProxy} from "@nestjs/microservices";
 import {ErrorInterceptor, Ok_Empty_Res, receiver} from "../../../../helpers/func";
 
+import { RequestDto } from '../dto/request.dto';
+import {ApiBody, ApiOperation} from "@nestjs/swagger";
 @Controller('requests')
 export class RequestStepsController {
 
@@ -38,21 +40,6 @@ constructor(@Inject('requat-steps') private readonly requeststepsC: ClientProxy)
         res.status(result.status).json(result.data);
     })
    
-    // try {
-    //   const result = this.requestStepGroup.getRequestStepsById({
-    //     id,
-    //   });
-    //   if (result) res.status(HttpStatus.NO_CONTENT);
-    //   return res.status(HttpStatus.OK).json(result);
-    // } catch (e) {
-    //   throw new HttpException(
-    //     {
-    //       message: 'Internal Server Error',
-    //       details: e.message,
-    //     },
-    //     HttpStatus.INTERNAL_SERVER_ERROR,
-    //   );
-    // }
   }
 
   @Post('/routes')
@@ -62,19 +49,6 @@ constructor(@Inject('requat-steps') private readonly requeststepsC: ClientProxy)
         const result = await receiver(this.requeststepsC, 'getRequestStepByIds', data);
         res.status(result.status).json(result.data);
     })
-    // try {
-    //   const result = await this.requestStepGroup.getRequestStepByIds(data);
-    //   if (!result) res.status(HttpStatus.NO_CONTENT);
-    //   return res.status(HttpStatus.OK).json(result);
-    // } catch (e) {
-    //   throw new HttpException(
-    //     {
-    //       message: 'Internal Server Error',
-    //       details: e.message,
-    //     },
-    //     HttpStatus.INTERNAL_SERVER_ERROR,
-    //   );
-    // }
   }
 
 
@@ -84,19 +58,5 @@ constructor(@Inject('requat-steps') private readonly requeststepsC: ClientProxy)
         const result = await receiver(this.requeststepsC, 'createRequestStep', data);
         res.status(result.status).json(result.data);
     })
-
-    // try {
-    //   const result = await this.requestStepGroup.createRequestStep(data);
-    //   if (!result) res.status(HttpStatus.NO_CONTENT);
-    //   return res.status(HttpStatus.CREATED).json(result);
-    // } catch (e) {
-    //   throw new HttpException(
-    //     {
-    //       message: 'Internal Server Error',
-    //       details: e.message,
-    //     },
-    //     HttpStatus.INTERNAL_SERVER_ERROR,
-    //   );
-    // }
   }
 }

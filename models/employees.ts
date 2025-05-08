@@ -230,4 +230,5 @@ export class Employees extends Model {
     foreignKey: 'EMPLOYEE_ID',
     sourceKey: 'EMPLOYEE_ID',
   }) employeeSubjects: EmployeeSubjects[];
+  
 }

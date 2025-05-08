@@ -9,7 +9,9 @@ import {HandlebarsAdapter} from "../../../helpers/handlebars.adapter";
 import {clientProxy} from "../../../helpers/func";
 import {UsersController} from "./controllers/users.controller";
 import {LessonsController} from "./controllers/lessons.controller";
+import {RequestsController} from "./controllers/requests.controller";
 import {ConfigModule} from "@nestjs/config";
+import { RequestBatchsController } from './controllers/request-batchs.controller';
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import {ConfigModule} from "@nestjs/config";
       }
     ))),
   ],
-  controllers: [AppController, YearsController, UsersController, LessonsController],
+  controllers: [AppController, YearsController, UsersController,RequestsController,RequestBatchsController, LessonsController],
   providers: [AppService],
 })
 export class AppModule {
