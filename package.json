@@ -32,6 +32,7 @@
     "axios": "^1.9.0",
     "body-parser": "^2.2.0",
     "cron": "^4.3.0",
+    "dotenv": "^16.5.0",
     "express-handlebars": "^8.0.3",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
@@ -84,7 +85,11 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/config(|/.*)$": "<rootDir>/libs/config/src/$1"
+    }
   }
 }

@@ -1,25 +1,5 @@
 import * as nodemailer from 'nodemailer';
 import * as exphbs from 'express-handlebars';
-import * as process from 'node:process';
-
-// Types
-interface MailConfig {
-  host: string;
-  port: number;
-  auth: {
-    user: string;
-    pass: string;
-  };
-  tls: {
-    ciphers: string;
-    rejectUnauthorized?: boolean;
-  };
-  pool: boolean;
-  maxConnections: number;
-  maxMessages: number;
-  rateDelta: number;
-  rateLimit: number;
-}
 
 interface MailData {
   email?: string;
@@ -29,23 +9,19 @@ interface MailData {
   startDate?: Date;
   endDate?: Date;
   code?: string;
-
   [key: string]: any;
 }
-
-// Configuration
-const mailConfig: MailConfig = {
+// const configService = new ConfigService(); // You may want to pass in the Nest `ConfigService` if you're in a Nest context
+const mailConfig = {
   host: 'smtp.office365.com',
   port: 587,
   auth: {
-    user: process.env.MAIL_USER,
+    user: 'galio.noreply@myiuc.com',
     pass: process.env.MAIL_PASSWORD,
   },
   tls: {
-    ciphers: 'SSLv3',
-    rejectUnauthorized: true,
+    rejectUnauthorized: true
   },
-  pool: true,
   maxConnections: 5,
   maxMessages: 100,
   rateDelta: 1000,
@@ -57,14 +33,28 @@ let transporter: nodemailer.Transporter | null = null;
 
 const getTransporter = (): nodemailer.Transporter => {
   if (!transporter) {
-    transporter = nodemailer.createTransport(mailConfig);
+    transporter = nodemailer.createTransport({
+      host: 'smtp.office365.com',
+      port: 587,
+      auth: {
+        user: 'galio.noreply@myiuc.com',
+        pass: process.env.MAIL_PASSWORD,
+      },
+      tls: {
+        rejectUnauthorized: true
+      },
+      maxConnections: 5,
+      maxMessages: 100,
+      rateDelta: 1000,
+      rateLimit: 5,
+    });
   }
   return transporter;
 };
 
 // Initialize Handlebars
 const hbs = exphbs.create({
-  layoutsDir: 'main-app/views',
+  layoutsDir: 'views',
 });
 
 // Core mail sending function with retries
@@ -124,7 +114,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: data.email,
       subject: data.emailsSubject,
-      html: await hbs.render('main-app/views/welcome-email.hbs', {
+      html: await hbs.render('views/welcome-email.hbs', {
         ...data,
         redirectUrl: process.env.ROOT,
       }),
@@ -137,7 +127,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: data.email,
       subject: "PAIEMENT DE FRAIS D'ADMISSION POUR CONCOURS IUC",
-      html: await hbs.render('main-app/views/order-transaction-email.hbs', {
+      html: await hbs.render('views/order-transaction-email.hbs', {
         ...data,
         ordeDate,
       }),
@@ -146,7 +136,7 @@ export class Mail {
 
   static async notify(data: MailData): Promise<string> {
     try {
-      const html = await renderTemplate('main-app/views/notify.hbs', data);
+      const html = await renderTemplate('views/notify.hbs', data);
       return sendMail({
         from: mailConfig.auth.user,
         to: data.email,
@@ -175,7 +165,7 @@ export class Mail {
 
   static async birthdayEmail(data: MailData): Promise<string> {
     try {
-      const html = await renderTemplate('main-app/views/birthday.hbs', data);
+      const html = await renderTemplate('views/birthday.hbs', data);
       return sendMail({
         from: mailConfig.auth.user,
         to: data.EMAIL,
@@ -193,7 +183,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: 'numerique.educatif@myiuc.com',
       subject: 'ACCOUNT PROBLEM ALERT / ALERTE DE PROBLEME DE COMPTE',
-      html: await hbs.render('main-app/views/contact-us.hbs', data),
+      html: await hbs.render('views/contact-us.hbs', data),
     });
   };
   static closedRequest = async (request, employee) => {
@@ -201,7 +191,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: employee.EMAIL,
       subject: 'REQUEST DECISION ALERT / ALERTE DE DECISION SUR VOTRE REQUETE',
-      html: await hbs.render('main-app/views/closed-request.hbs', {
+      html: await hbs.render('views/closed-request.hbs', {
         employee,
         request,
       }),
@@ -212,7 +202,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: data.EMAIL,
       subject: 'MESSAGE INFORMATION',
-      html: await hbs.render('main-app/views/contact-employee.hbs', data),
+      html: await hbs.render('views/contact-employee.hbs', data),
     });
   };
   static emailAuth = async (data) => {
@@ -222,18 +212,19 @@ export class Mail {
       to: data.email,
       subject: "BIENVENUE SUR LA PLATEFORME D'ADMISSION DE IUC",
 
-      html: await hbs.render('main-app/views/email-auth.hbs', {
+      html: await hbs.render('views/email-auth.hbs', {
         ...data,
         redirectUrl: `${process.env.ROOT_STU}session-type`,
       }),
     });
   };
   static reportTaskInfo = async (data) => {
+    console.log(process.env.MAIL_USER, process.env.EMAIL_GROUP, process.env.MAIL_PASSWORD)
     return sendMail({
       from: process.env.MAIL_USER,
       to: process.env.EMAIL_GROUP,
       subject: data.TASK_NAME || 'CRON REPORT MESSAGE',
-      html: await hbs.render('main-app/views/cron-task-report.hbs', data),
+      html: await hbs.render('views/cron-task-report.hbs', data),
     });
   };
   static codeEmail = async (data, code) => {
@@ -242,7 +233,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: data.EMAIL,
       subject: `CONFIRM ACCESS CODE: ${code} || CONFIRMATION DU CODE D'ACCES: ${code}`,
-      html: await hbs.render('main-app/views/code-email.hbs', {
+      html: await hbs.render('views/code-email.hbs', {
         ...data,
         code,
         currentDate,
@@ -254,7 +245,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: data.EMAIL,
       subject: 'Mail de confirmation pour la phase une',
-      html: await hbs.render('main-app/views/close-confirmation-email.hbs', data),
+      html: await hbs.render('views/close-confirmation-email.hbs', data),
     });
   };
   static activationToCourse = async (data) => {
@@ -262,7 +253,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: data.EMAIL,
       subject: 'ACTIVATION OF COURSE CHOICE||ACTIVATION DE CHOIX DE COURS',
-      html: await hbs.render('main-app/views/activation-to-course.hbs', data),
+      html: await hbs.render('views/activation-to-course.hbs', data),
     });
   };
   static closeCoursesChoices = async (data, employee) => {
@@ -270,7 +261,7 @@ export class Mail {
       from: process.env.MAIL_USER,
       to: employee.EMAIL,
       subject: 'CHOICES SESSION CLOSURE||CLÔTURE DE SESSION DE CHOIX',
-      html: await hbs.render('main-app/views/close-courses-choices.hbs', data),
+      html: await hbs.render('views/close-courses-choices.hbs', data),
     });
   };
 }
