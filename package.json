@@ -43,7 +43,8 @@
     "rxjs": "^7.8.1",
     "sequelize": "^6.37.7",
     "sequelize-typescript": "^2.1.6",
-    "tedious": "^18.6.1"
+    "tedious": "^18.6.1",
+    "url-encode-decode": "^1.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",

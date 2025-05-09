@@ -64,6 +64,33 @@
         "tsConfigPath": "apps/schedules/tsconfig.app.json"
       }
     },
+    "request-batch": {
+      "type": "application",
+      "root": "apps/request-batch",
+      "entryFile": "main",
+      "sourceRoot": "apps/request-batch/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request-batch/tsconfig.app.json"
+      }
+    },
+    "request-batchs": {
+      "type": "application",
+      "root": "apps/request-batchs",
+      "entryFile": "main",
+      "sourceRoot": "apps/request-batchs/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request-batchs/tsconfig.app.json"
+      }
+    },
+    "request-steps": {
+      "type": "application",
+      "root": "apps/request-steps",
+      "entryFile": "main",
+      "sourceRoot": "apps/request-steps/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/request-steps/tsconfig.app.json"
+      }
+    },
     "auth": {
       "type": "application",
       "root": "apps/auth",

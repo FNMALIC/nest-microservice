@@ -33,7 +33,7 @@ async function bootstrap() {
       operationIdFactory: (controllerKey: string, methodKey: string) =>
         methodKey,
     }));
-  await app.listen(process.env.PORT);
+  await app.listen(3000);
 }
 
 bootstrap();

@@ -1,5 +1,5 @@
 import { BelongsTo, Column, DataType, Model, Table } from 'sequelize-typescript';
-import {Subjects} from "./subjects";
+// import { Subjects } from '../subjects/subjects';
 
 @Table({ tableName: 'EMPLOYEE_SUBJECTS' })
 export class EmployeeSubjects extends Model {
@@ -16,7 +16,7 @@ export class EmployeeSubjects extends Model {
   @Column({ type: DataType.INTEGER }) SUBJECT_PERIOD_POSITION: bigint;
   @Column({ type: DataType.STRING }) SUBJECT_STATUS: string;
 
-  @BelongsTo(() => Subjects, { foreignKey: 'SUBJECT_ID', targetKey: 'SUBJECT_ID', as: 'Subject' })
-  subject: Subjects;
+  // @BelongsTo(() => Subjects, { foreignKey: 'SUBJECT_ID', targetKey: 'SUBJECT_ID', as: 'Subject' })
+  // subject: Subjects;
 
 }
