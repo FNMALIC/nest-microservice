@@ -10,6 +10,8 @@ import {clientProxy} from "../../../helpers/func";
 import {UsersController} from "./controllers/users.controller";
 import {LessonsController} from "./controllers/lessons.controller";
 import {ConfigModule} from "@nestjs/config";
+import {ClassesController} from "./controllers/classes.controller";
+import {AuthController} from "./controllers/auth.controller";
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import {ConfigModule} from "@nestjs/config";
       }
     ))),
   ],
-  controllers: [AppController, YearsController, UsersController, LessonsController],
+  controllers: [AppController, YearsController, UsersController, LessonsController, ClassesController, AuthController],
   providers: [AppService],
 })
 export class AppModule {

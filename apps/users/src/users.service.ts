@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { Users } from '../../../models/users';
-import { decrypt, encrypt } from '../../../helpers/cryptogram';
-import { serializer } from '../../../helpers/func';
+import {Injectable} from '@nestjs/common';
+import {InjectModel} from '@nestjs/sequelize';
+import {Users} from '../../../models/users';
+import {decrypt, encrypt} from '../../../helpers/cryptogram';
+import {serializer} from '../../../helpers/func';
 import {RequestGroups} from "../../../models/request-groups";
 import {OrganizationGroups} from "../../../models/organization-groups";
 
@@ -18,7 +18,7 @@ export class UsersService {
 
   async create(data) {
     const hash = encrypt(data.privilege.join('-'));
-    const result = await this.userModel.create({
+    return await this.userModel.create({
       USERNAME: data.username,
       USERPRIVILEGE: hash.iv + '@' + hash.content,
       USERPROFILE: data.profile,
@@ -26,17 +26,12 @@ export class UsersService {
       ORGANIZATION_GROUP: data.orgaGroup,
       ACTIVATED: 1,
     });
-    return result ? result : null;
   }
 
   async getUser(params) {
-    this.userModel.belongsTo(this.requestGroupModel, {
-      foreignKey: 'REQUEST_GROUP_ID',
-      targetKey: 'REQUEST_GROUP_ID',
-    });
     const result = await this.userModel.findOne({
-      include: [{ model: this.requestGroupModel }],
-      where: { id: params.id },
+      include: [{model: this.requestGroupModel}],
+      where: {id: params.id},
       raw: true,
     });
     return result
@@ -63,8 +58,8 @@ export class UsersService {
 
     const result = serializer(await this.userModel.findAll({
         include: [
-          { model: this.requestGroupModel, as: 'RequestGroup' },
-          { model: this.organizationModel, as: 'OrganizationGroup' },
+          {model: this.requestGroupModel, as: 'RequestGroup'},
+          {model: this.organizationModel, as: 'OrganizationGroup'},
         ],
         attributes: [
           'id',
@@ -82,13 +77,16 @@ export class UsersService {
   }
 
   async update(data, id) {
-    const result = await this.userModel.update(data, { where: { id } });
-    return result ? result : null;
+    return await this.userModel.update(data, {where: {id}});
+  }
+
+  async deleteOne(id) {
+    return await this.userModel.destroy({where: {id}});
   }
 
   async isExist(data) {
     return (
-      (await this.userModel.count({ where: { USERNAME: data.username } })) > 0
+      (await this.userModel.count({where: {USERNAME: data.username}})) > 0
     );
   }
 }

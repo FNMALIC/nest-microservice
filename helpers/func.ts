@@ -15,9 +15,8 @@ export const callbackFolder = (err) => {
 
 export const ErrorInterceptor = async (f) => {
   try {
-    await f()
+    return await f()
   } catch (e) {
-    console.log(e)
     throw new HttpException(
       {
         message: 'Internal Server Error',

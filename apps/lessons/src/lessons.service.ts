@@ -1,7 +1,7 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { Lessons } from '../../../models/lessons';
-import { Op } from 'sequelize';
+import {Injectable} from '@nestjs/common';
+import {InjectModel} from '@nestjs/sequelize';
+import {Lessons} from '../../../models/lessons';
+import {Op} from 'sequelize';
 
 @Injectable()
 export class LessonsService {

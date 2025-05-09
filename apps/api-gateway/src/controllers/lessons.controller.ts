@@ -1,27 +1,19 @@
 import {Body, Controller, Inject, Post, Res} from '@nestjs/common';
 import {ClientProxy} from "@nestjs/microservices";
 import {ErrorInterceptor, receiver} from "../../../../helpers/func";
-import {ApiBody} from "@nestjs/swagger";
+import {ApiBody, ApiConsumes} from "@nestjs/swagger";
+import {FetchLessonDto} from "../dto/FetchLessonDto";
 
 @Controller('lessons')
 export class LessonsController {
   constructor(@Inject('lessons') private readonly lessonsC: ClientProxy) {
   }
 
+  @ApiBody({type: FetchLessonDto})
+  @ApiConsumes('application/x-www-form-urlencoded', 'application/json')
   @Post('/time-table')
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        EMPLOYEE_ID: {type: 'string', description: 'User ID'},
-        END_DATE: {type: 'string', description: 'End Date'},
-        START_DATE: {type: 'string', description: 'Start Date'},
-      },
-      required: ['EMPLOYEE_ID', 'START_DATE', 'END_DATE'],
-    },
-  })
   async planning(@Res() res: any, @Body() body: any) {
-    await ErrorInterceptor(async () => {
+    return await ErrorInterceptor(async () => {
       let result = await receiver(this.lessonsC, 'planning', body)
       return res.status(result.status).json(result.data);
     });

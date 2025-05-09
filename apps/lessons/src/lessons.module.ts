@@ -4,11 +4,12 @@ import { LessonsService } from './lessons.service';
 import {DatabaseModule} from "../../../database/database.module";
 import {SequelizeModule} from "@nestjs/sequelize";
 import {Lessons} from "../../../models/lessons";
+import {ModelModule} from "../../../database/model.module";
 
 @Module({
   imports: [
     DatabaseModule,
-    SequelizeModule.forFeature([Lessons])
+    ModelModule,
   ],
   controllers: [LessonsController],
   providers: [LessonsService],

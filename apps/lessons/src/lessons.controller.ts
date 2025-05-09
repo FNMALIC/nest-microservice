@@ -1,7 +1,7 @@
-import {Controller, HttpException, HttpStatus} from '@nestjs/common';
+import {Controller, HttpStatus} from '@nestjs/common';
 import {LessonsService} from './lessons.service';
 import {MessagePattern, Payload} from "@nestjs/microservices";
-import {responder} from "../../../helpers/func";
+import {ErrorInterceptor, responder} from "../../../helpers/func";
 
 @Controller()
 export class LessonsController {
@@ -9,20 +9,12 @@ export class LessonsController {
   }
 
   @MessagePattern({cmd: 'planning'})
-  async planning(@Payload() data: any) {
-    try {
-      console.log(data)
+  async planning(data: any) {
+    return await ErrorInterceptor(async () => {
       const result: any = await this.lessonsService.planning(data);
-      console.log(result)
       return result
         ? responder(HttpStatus.OK, result)
         : responder(HttpStatus.NO_CONTENT);
-    } catch (e) {
-      console.log(e)
-      throw new HttpException({
-        message: 'Internal Server Error',
-        details: e.message,
-      }, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    })
   }
 }

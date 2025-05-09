@@ -1,14 +1,13 @@
 import {Module} from '@nestjs/common';
 import {AcademicYearsController} from './academic-years.controller';
 import {AcademicYearsService} from './academic-years.service';
-import {SequelizeModule} from "@nestjs/sequelize";
-import {AcademicYears} from "../../../models/academic-years";
 import {DatabaseModule} from "../../../database/database.module";
+import {ModelModule} from "../../../database/model.module";
 
 @Module({
   imports: [
     DatabaseModule,
-    SequelizeModule.forFeature([AcademicYears])
+    ModelModule,
   ],
   controllers: [AcademicYearsController],
   providers: [AcademicYearsService],

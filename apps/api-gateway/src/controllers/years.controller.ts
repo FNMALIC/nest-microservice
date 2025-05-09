@@ -1,7 +1,14 @@
 import {Body, Controller, Get, Inject, Post, Res,} from '@nestjs/common';
 import {ClientProxy} from "@nestjs/microservices";
-import {ErrorInterceptor, Ok_Empty_Res, receiver} from "../../../../helpers/func";
-import {ApiBody, ApiOperation} from "@nestjs/swagger";
+import {ErrorInterceptor, receiver} from "../../../../helpers/func";
+import {ApiBody, ApiConsumes, ApiProperty} from "@nestjs/swagger";
+
+class YearDto {
+  @ApiProperty({example: true})
+  status: boolean;
+  @ApiProperty({example: '155'})
+  id: string;
+}
 
 @Controller('years')
 export class YearsController {
@@ -11,15 +18,19 @@ export class YearsController {
 
   @Get()
   async findAll(@Res() res: any) {
-    await ErrorInterceptor(async () => {
-      return Ok_Empty_Res(await receiver(this.yearC, 'findAll'), res);
+    return await ErrorInterceptor(async () => {
+      let result = await receiver(this.yearC, 'findAll')
+      return res.status(result.status).json(result.data);
     });
   }
 
+  @ApiBody({type: YearDto})
+  @ApiConsumes('application/x-www-form-urlencoded')
   @Post('/activation')
   async activate(@Res() res: any, @Body() data: any) {
-    await ErrorInterceptor(async () => {
-      return Ok_Empty_Res(await receiver(this.yearC, 'activate', data), res);
+    return await ErrorInterceptor(async () => {
+      let result = await receiver(this.yearC, 'activate', data)
+      return res.status(result.status).json(result.data);
     })
   }
 }
